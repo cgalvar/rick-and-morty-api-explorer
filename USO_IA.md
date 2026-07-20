@@ -21,3 +21,7 @@ Prompts representados por este trabajo:
 - Se rechazó obtener todos los personajes al iniciar. La aplicación consulta
   solamente la página y filtros solicitados para conservar paginación
   incremental y evitar consumo innecesario.
+- Se cuestionó que `ThemeCubit` estuviera en `features/theme`: alternar el
+  tema es estado de presentación transversal, no una capacidad de dominio. Se
+  reubicó en `core/presentation`, junto a `AppTheme`, sin alterar el modo
+  claro/oscuro ni añadir capas innecesarias.

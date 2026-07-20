@@ -6,12 +6,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/presentation/app_icon_set.dart';
+import '../../../../core/presentation/theme_cubit.dart';
 import '../../../../core/router/app_router.dart';
 import '../../domain/entities.dart';
 import '../characters_bloc.dart';
 import '../widgets.dart';
 import '../../../favorites/presentation/favorites_cubit.dart';
-import '../../../theme/presentation/theme_cubit.dart';
 
 part '../widgets/home/character_results_grid.dart';
 part '../widgets/home/character_search_filters.dart';
