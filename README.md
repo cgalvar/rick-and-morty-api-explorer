@@ -2,6 +2,12 @@
 
 Aplicación Flutter de evaluación técnica para explorar personajes de la API pública Rick and Morty.
 
+## Demo y APK
+
+El GIF demostrativo y el APK de lanzamiento están disponibles en
+[`docs/assets/demo.gif`](docs/assets/demo.gif) y
+[`docs/assets/app-release.apk`](docs/assets/app-release.apk).
+
 ## Arquitectura
 
 El código está separado en `core/` y `features/characters` y `features/favorites`; los módulos de personajes y favoritos usan `data`, `domain` y `presentation`. `core/presentation` contiene el tema y su estado global porque son transversales a la aplicación. Las entidades, contratos y casos de uso no dependen de Flutter, Chopper ni persistencia. La implementación usa repositorios, un servicio REST Chopper generado, `SharedPreferences`, BLoC/Cubit e inyección generada con `get_it`/`injectable`. `main.dart` es sólo la raíz de composición; las páginas y rutas viven en la capa de presentación.
