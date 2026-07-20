@@ -37,8 +37,12 @@ Los valores del proxy se suministran por Dart defines; en VS Code selecciona el
 perfil `Flutter: Proxyman`, que incluye los mismos valores. En plataformas con
 `dart:io`, la app conserva como destino `https://rickandmortyapi.com/api` y el
 transporte usa la directiva de forward proxy, incluido el flujo HTTPS CONNECT.
-Para inspeccionar HTTPS, instala y confía el certificado CA de Proxyman en el
-dispositivo o simulador; la app no desactiva la validación TLS.
+Para inspeccionar HTTPS con SSL Proxying, en compilaciones *debug* con
+`USE_PROXY=true` la app acepta certificados de Proxyman para todos los hosts.
+Las compilaciones profile y release conservan la validación TLS normal. Este
+comportamiento es intencionalmente inseguro y exclusivo de desarrollo. Instala y
+confía el certificado CA de Proxyman en el dispositivo o simulador cuando sea
+necesario.
 
 Flutter web no puede configurar un forward proxy desde Dart. Configúralo en el
 navegador o sistema operativo; usar `USE_PROXY=true` en web falla al inicializar

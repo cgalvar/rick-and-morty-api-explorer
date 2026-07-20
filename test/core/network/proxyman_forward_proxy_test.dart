@@ -1,9 +1,17 @@
+import 'dart:io';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/io_client.dart';
+import 'package:mocktail/mocktail.dart';
 import 'package:soriana_character_explorer/core/di/injection.dart';
 import 'package:soriana_character_explorer/core/network/proxyman_forward_proxy.dart';
+import 'package:soriana_character_explorer/core/network/proxyman_forward_proxy_platform.dart';
 
 class _TestCoreModule extends CoreModule {}
+
+class _HttpClient extends Mock implements HttpClient {}
+
+class _Certificate extends Mock implements X509Certificate {}
 
 void main() {
   test('builds the exact Proxyman forward proxy directive', () {
@@ -46,6 +54,35 @@ void main() {
     if (!useProxymanProxy) {
       expect(configuredProxymanHttpClient(), isNull);
     }
+  });
+
+  test('trusts Proxyman certificates for every host in debug', () {
+    final httpClient = _HttpClient();
+
+    final client = HttpOverrides.runZoned(
+      () => createProxymanProxyHttpClient('PROXY proxy.example.test:9099'),
+      createHttpClient: (_) => httpClient,
+    );
+    addTearDown(client.close);
+
+    final findProxy =
+        verify(() => httpClient.findProxy = captureAny()).captured.single
+            as String Function(Uri);
+    expect(
+      findProxy(Uri.parse('https://rickandmortyapi.com/api/character')),
+      'PROXY proxy.example.test:9099',
+    );
+
+    final callback =
+        verify(
+              () => httpClient.badCertificateCallback = captureAny(),
+            ).captured.single
+            as BadCertificateCallback;
+    final certificate = _Certificate();
+    expect(callback(certificate, 'rickandmortyapi.com', 443), isTrue);
+    expect(callback(certificate, 'evil.rickandmortyapi.com', 443), isTrue);
+    expect(callback(certificate, 'rickandmortyapi.com.evil', 443), isTrue);
+    expect(callback(certificate, 'example.com', 443), isTrue);
   });
 
   test('keeps the official API base URL and adds no interceptor', () {
