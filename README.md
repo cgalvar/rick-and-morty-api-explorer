@@ -4,7 +4,7 @@ Aplicación Flutter de evaluación técnica para explorar personajes de la API p
 
 ## Arquitectura
 
-El código está separado en `core/` y `features/characters`, `features/favorites` y `features/theme`; los módulos de personajes y favoritos usan `data`, `domain` y `presentation`. Las entidades, contratos y casos de uso no dependen de Flutter, Chopper ni persistencia. La implementación usa repositorios, un servicio REST Chopper generado, `SharedPreferences`, BLoC/Cubit e inyección generada con `get_it`/`injectable`. `main.dart` es sólo la raíz de composición; las páginas y rutas viven en la capa de presentación.
+El código está separado en `core/` y `features/characters` y `features/favorites`; los módulos de personajes y favoritos usan `data`, `domain` y `presentation`. `core/presentation` contiene el tema y su estado global porque son transversales a la aplicación. Las entidades, contratos y casos de uso no dependen de Flutter, Chopper ni persistencia. La implementación usa repositorios, un servicio REST Chopper generado, `SharedPreferences`, BLoC/Cubit e inyección generada con `get_it`/`injectable`. `main.dart` es sólo la raíz de composición; las páginas y rutas viven en la capa de presentación.
 
 SOLID se aplica separando la API, el mapeo, persistencia, estado y widgets. Se evitó una capa adicional de abstracciones sin una segunda implementación.
 

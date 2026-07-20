@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'core/presentation/app_theme.dart';
+import 'core/presentation/theme_cubit.dart';
 import 'core/router/app_router.dart';
 import 'features/characters/domain/use_cases.dart';
 import 'features/characters/presentation/characters_bloc.dart';
 import 'features/favorites/presentation/favorites_cubit.dart';
 import 'features/favorites/domain/favorites_use_cases.dart';
-import 'features/theme/presentation/theme_cubit.dart';
 
 class App extends StatelessWidget {
   const App({

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:soriana_character_explorer/core/presentation/theme_cubit.dart';
 import 'package:soriana_character_explorer/features/characters/domain/character_repository.dart';
 import 'package:soriana_character_explorer/features/characters/domain/entities.dart';
 import 'package:soriana_character_explorer/features/characters/domain/use_cases.dart';
@@ -11,7 +12,6 @@ import 'package:soriana_character_explorer/features/characters/presentation/page
 import 'package:soriana_character_explorer/features/favorites/domain/favorites_repository.dart';
 import 'package:soriana_character_explorer/features/favorites/domain/favorites_use_cases.dart';
 import 'package:soriana_character_explorer/features/favorites/presentation/favorites_cubit.dart';
-import 'package:soriana_character_explorer/features/theme/presentation/theme_cubit.dart';
 
 class _CharacterRepository implements CharacterRepository {
   _CharacterRepository({this.deadPage, this.initialPage});
