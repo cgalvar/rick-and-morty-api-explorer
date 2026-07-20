@@ -1,0 +1,35 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Prueba tecnica",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "Prueba tecnica (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "Prueba tecnica (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "Flutter: Proxyman",
+            "request": "launch",
+            "type": "dart",
+            "toolArgs": [
+                "--dart-define=USE_PROXY=true",
+                "--dart-define=PROXY_HOST=proxy.example.test",
+                "--dart-define=PROXY_PORT=9090"
+            ]
+        }
+    ]
+}

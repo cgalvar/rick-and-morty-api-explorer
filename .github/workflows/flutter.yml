@@ -1,0 +1,25 @@
+name: Flutter CI
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with: {flutter-version: '3.41.4'}
+      - run: flutter pub get
+      - run: dart run build_runner build
+      - name: Verify generated sources are committed
+        shell: bash
+        run: |
+          generated_status="$(git status --short --untracked-files=all -- \
+            lib/core/di/injection.config.dart \
+            lib/features/characters/data/rick_and_morty_api_service.chopper.dart \
+            lib/features/characters/data/location_api_service.chopper.dart)"
+          if [ -n "$generated_status" ]; then
+            echo "Generated sources are stale or missing from the commit:"
+            printf '%s\n' "$generated_status"
+            exit 1
+          fi
+      - run: flutter analyze
+      - run: flutter test --coverage
